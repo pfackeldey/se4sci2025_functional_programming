@@ -10,7 +10,8 @@ main = do
   -- In Haskell the syntax is operator-first, i.e. `function arg1 arg2`
   -- In fact this syntax automatically curries already!
   --   function arg1 arg2 = (function arg1) arg2 = curried_function_with_arg1 arg2
-  --
+  
+  putStrLn "Currying examples:"
   -- Let's see a first simple example of adding 1:
   -- `+` is the addition function
   -- `(+ 1)` "curries" the addition function to always add 1
@@ -18,7 +19,6 @@ main = do
   putStrLn $ "1 + 2 = " ++ show (addOne 2)
 
   -- This `applyFnTwice` function applies `f` two times to `x`
-  putStrLn "Currying examples:"
   let applyFnTwice f x = f (f x)
 
   -- Now let's curry it
