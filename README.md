@@ -17,10 +17,11 @@ Run:
 >> Hip Hip Hurray!
 >> 
 >> Recursion examples:
->> Summing [2,1,5,3,4]: 15
->> Fibonacci(12) = 233
 >> Increase each value from [2,1,5,3,4] by 1: [3,2,6,4,5]
 >> Select only the 3 from [2,1,5,3,4]: [3]
+>> Reduce [2,1,5,3,4] through multiplication into: 120
+>> Summing [2,1,5,3,4]: 15
+>> Fibonacci(12) = 233
 >> Sorting [2,1,5,3,4] results in [1,2,3,4,5]
 >> 
 >> Lambda function examples:
