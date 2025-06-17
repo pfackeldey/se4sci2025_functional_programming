@@ -10,7 +10,8 @@ main = do
   -- In Haskell the syntax is operator-first, i.e. `function arg1 arg2`
   -- In fact this syntax automatically curries already!
   --   function arg1 arg2 = (function arg1) arg2 = curried_function_with_arg1 arg2
-  
+  --
+
   putStrLn "Currying examples:"
   -- Let's see a first simple example of adding 1:
   -- `+` is the addition function
@@ -35,19 +36,6 @@ main = do
   putStrLn "Recursion examples:"
   let values = [2, 1, 5, 3, 4]
 
-  -- summation over a list with recursion
-  let sum' :: (Num a) => [a] -> a
-      sum' [] = 0 -- summing an empty list yields 0
-      sum' (x : xs) = x + sum' xs -- summing up all elements until nothing is left in xs
-  putStrLn $ "Summing " ++ show values ++ ": " ++ show (sum' values)
-
-  -- Fibonacci sequence
-  let fib :: Int -> Int
-      fib 0 = 1
-      fib 1 = 1
-      fib n = fib (n - 1) + fib (n - 2)
-  putStrLn $ "Fibonacci(12) = " ++ show (fib 12)
-
   -- A map implementation with recursion:
   let map' :: (a -> b) -> [a] -> [b]
       map' _ [] = [] -- mapping anything over an empty list returns an empty list
@@ -68,6 +56,28 @@ main = do
   let selectEqThree = filter' (== 3)
   let values = [2, 1, 5, 3, 4]
   putStrLn $ "Select only the 3 from " ++ show values ++ ": " ++ show (selectEqThree values)
+
+  -- A reduce implementation with recursion:
+  let reduce' :: (a -> b -> a) -> a -> [b] -> a
+      reduce' f acc [] = acc -- empty lists can't be further reduced
+      reduce' f acc (x : xs) = reduce' f (f acc x) xs -- `f` takes 2 arguments: `acc` to accumulate into, and a value `x` from `xs`
+
+  -- Curry multiplication operator `*` for a reduction
+  let reduceMultiply = reduce' (*) 1
+  putStrLn $ "Reduce " ++ show values ++ " through multiplication into: " ++ show (reduceMultiply values)
+
+  -- summation over a list with recursion
+  let sum' :: (Num a) => [a] -> a
+      sum' [] = 0 -- summing an empty list yields 0
+      sum' (x : xs) = x + sum' xs -- summing up all elements until nothing is left in xs
+  putStrLn $ "Summing " ++ show values ++ ": " ++ show (sum' values)
+
+  -- Fibonacci sequence
+  let fib :: Int -> Int
+      fib 0 = 1
+      fib 1 = 1
+      fib n = fib (n - 1) + fib (n - 2)
+  putStrLn $ "Fibonacci(12) = " ++ show (fib 12)
 
   -- A recursively defined sorting with currying
   -- recursively defined sorting
